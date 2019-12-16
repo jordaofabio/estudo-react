@@ -1,0 +1,43 @@
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font: 16px sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    font-family: sans-serif
+  }
+
+  .search {
+    margin-bottom: 30px;
+  }
+  
+  .search input {
+    font-size: 30px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .user-info img {
+    float: left;
+    margin: 0 20px 20px 0;
+    max-height: 200px;
+  }
+  
+  .repos-info li, .starred-info li {
+    padding: 5px;
+  }
+  
+
+.repos-list, .starred-list li  li {
+    padding: 10px 0;
+  }
+  
+  .repos-list li + li, .starred-list li + li {
+    border-top: 1px solid #ccc;
+  }
