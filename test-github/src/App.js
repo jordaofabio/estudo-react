@@ -1,38 +1,54 @@
-import React from 'react';
-import Search from './components/search';
-import UserInfo from './components/user-info';
-import Repos from './components/repos';
-import Actions from './components/actions';
+import React, { Component } from 'react';
+import AppContent from './components/app-content';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <Search />
-      
-      <UserInfo />
-        
-      <Actions />
+class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      userInfo: null,
+      repos: [],
+      starred: [],
+    }
+  }
 
-      <Repos 
-        className="repos-container"
-        title="Repositórios"
-        repos={[{
-          name: 'Teste',
-          link: 'teste.html'
-        }]}
-      />
+  handleSearch (e) {
+    const value = e.target.value;
+    const keyCode = e.which || e.keyCode;
+    const ENTER = 13;
+    console.log('change', keyCode)
 
-      <Repos 
-        className="starred"
-        title="Favoritos"
-        repos={[{
-          name: 'Teste',
-          link: 'teste.html'
-        }]}
-      />
+    if (keyCode === ENTER) {
+      axios.get(`https://api.github.com/users/${value}`)
+      .then(ret => {
+        const result = ret.data
+        console.log('result', result)
+        this.setState({
+          userInfo: {
+            name: result.name,
+            login: result.login,
+            photo: result.avatar_url,
+            repos: result.public_repos,
+            followers: result.followers,
+            following: result.following,
 
-  </div>
-  );
+
+          }
+        })
+      })
+    }
+  }
+  
+
+  render () {
+    return <AppContent
+      userInfo={this.state.userInfo}
+      repos={this.state.repos}
+      starred={this.state.starred}
+      handleSearch={(e) => this.handleSearch(e)}
+    />;
+  }
+  
 }
 
 export default App;
