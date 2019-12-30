@@ -11,8 +11,8 @@ const AppContent = ({ userInfo,
                       repos,
                       starred,
                       handleSearch,
-                      handleShowRepos,
-                      handleShowStarred,
+                      handleRepos,
+                      handleStarred,
                       showRepos,
                       showStarred
                      }) => (
@@ -21,8 +21,8 @@ const AppContent = ({ userInfo,
         
         {!!userInfo && <UserInfo userInfo={userInfo} />}
           
-        {!!userInfo && <Actions handleShowRepos={handleShowRepos} 
-          handleShowStarred={handleShowStarred}
+        {!!userInfo && <Actions handleRepos={handleRepos} 
+          handleStarred={handleStarred}
         />}
   
         {(!!repos.length && showRepos) && <Repos 

@@ -14,6 +14,9 @@ class App extends Component {
     }
   }
 
+  urlApiGitHub = `https://api.github.com/users/`;
+
+
   handleSearch (e) {
     const value = e.target.value;
     const keyCode = e.which || e.keyCode;
@@ -21,7 +24,7 @@ class App extends Component {
     // console.log('change', keyCode)
 
     if (keyCode === ENTER) {
-      axios.get(`https://api.github.com/users/${value}`)
+      axios.get(`${this.urlApiGitHub}${value}`)
       .then(ret => {
         const result = ret.data
         console.log('result', result)
@@ -36,14 +39,14 @@ class App extends Component {
           }
         })
         if(this.state.userInfo) {
-          axios.get(`https://api.github.com/users/${this.state.userInfo.login}/repos`)
+          axios.get(`${this.urlApiGitHub}${this.state.userInfo.login}/repos`)
           .then(ret => {
             this.setState({
               repos: ret.data
             })
           })
 
-          axios.get(`https://api.github.com/users/${this.state.userInfo.login}/starred`)
+          axios.get(`${this.urlApiGitHub}${this.state.userInfo.login}/starred`)
           .then(ret => {
             this.setState({
               starred: ret.data
@@ -55,18 +58,21 @@ class App extends Component {
     }
   }
 
-  handleShowRepos(){
-    this.setState({
-      showRepos: !this.state.showRepos,
-      showStarred: false
-    })
-  }
-
-  handleShowStarred(){
-    this.setState({
-      showRepos: false,
-      showStarred: !this.state.showStarred
-    })
+  showReposStarred(type){
+    return (e) => {
+    if (type === 'repos') {
+        this.setState({
+          showRepos: !this.state.showRepos,
+          showStarred: false
+        })
+      } else {
+        this.setState({
+          showRepos: false,
+          showStarred: !this.state.showStarred
+        })
+      }
+    }
+    
   }
   
 
@@ -76,8 +82,8 @@ class App extends Component {
       repos={this.state.repos}
       starred={this.state.starred}
       handleSearch={(e) => this.handleSearch(e)}
-      handleShowRepos={() => this.handleShowRepos()}
-      handleShowStarred={() => this.handleShowStarred()}
+      handleRepos={this.showReposStarred('repos')}
+      handleStarred={this.showReposStarred('starred')}
       showRepos={this.state.showRepos}
       showStarred={this.state.showStarred}
     />;
