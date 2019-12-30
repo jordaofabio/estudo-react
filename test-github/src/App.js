@@ -10,7 +10,8 @@ class App extends Component {
       repos: [],
       starred: [],
       showRepos: false,
-      showStarred: false
+      showStarred: false,
+      isFeching: false
     }
   }
 
@@ -22,12 +23,11 @@ class App extends Component {
     const keyCode = e.which || e.keyCode;
     const ENTER = 13;
     // console.log('change', keyCode)
-
     if (keyCode === ENTER) {
+        this.setState({ isFeching: true });
       axios.get(`${this.urlApiGitHub}${value}`)
       .then(ret => {
         const result = ret.data
-        console.log('result', result)
         this.setState({
           userInfo: {
             name: result.name,
@@ -54,7 +54,10 @@ class App extends Component {
           })
         }
 
+
       })
+      .finally(() => this.setState({ isFeching: false }))
+
     }
   }
 
@@ -86,6 +89,7 @@ class App extends Component {
       handleStarred={this.showReposStarred('starred')}
       showRepos={this.state.showRepos}
       showStarred={this.state.showStarred}
+      isFeching={this.state.isFeching}
     />;
   }
   

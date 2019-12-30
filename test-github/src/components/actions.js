@@ -11,7 +11,8 @@ const Actions = ({ handleRepos, handleStarred }) => (
 );
 
 Actions.prototypes = {
-    handleRepos: PropTypes.func.isRequired
+    handleRepos: PropTypes.func.isRequired,
+    handleStarred: PropTypes.func.isRequired,
   }
 
 export default Actions;

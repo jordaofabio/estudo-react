@@ -14,11 +14,12 @@ const AppContent = ({ userInfo,
                       handleRepos,
                       handleStarred,
                       showRepos,
-                      showStarred
+                      showStarred,
+                      isFeching
                      }) => (
     <div className="App">
-        <Search handleSearch={handleSearch} />
-        
+        <Search handleSearch={handleSearch} isDisabled={isFeching} />
+        {isFeching && <div>Carregando...</div>}
         {!!userInfo && <UserInfo userInfo={userInfo} />}
           
         {!!userInfo && <Actions handleRepos={handleRepos} 
@@ -43,7 +44,11 @@ const AppContent = ({ userInfo,
 AppContent.prototypes = {
     userInfo: PropTypes.object,
     repos: PropTypes.array.isRequired,
-    starred: PropTypes.array.isRequired 
+    starred: PropTypes.array.isRequired,
+    isFeching: PropTypes.bool.isRequired,
+    handleSearch: PropTypes.func.isRequired,
+    showRepos: PropTypes.func.isRequired,
+    handleStarred: PropTypes.func.isRequired
 }
 
 export default AppContent
