@@ -9,6 +9,8 @@ class App extends Component {
       userInfo: null,
       repos: [],
       starred: [],
+      showRepos: false,
+      showStarred: false
     }
   }
 
@@ -16,7 +18,7 @@ class App extends Component {
     const value = e.target.value;
     const keyCode = e.which || e.keyCode;
     const ENTER = 13;
-    console.log('change', keyCode)
+    // console.log('change', keyCode)
 
     if (keyCode === ENTER) {
       axios.get(`https://api.github.com/users/${value}`)
@@ -31,12 +33,40 @@ class App extends Component {
             repos: result.public_repos,
             followers: result.followers,
             following: result.following,
-
-
           }
         })
+        if(this.state.userInfo) {
+          axios.get(`https://api.github.com/users/${this.state.userInfo.login}/repos`)
+          .then(ret => {
+            this.setState({
+              repos: ret.data
+            })
+          })
+
+          axios.get(`https://api.github.com/users/${this.state.userInfo.login}/starred`)
+          .then(ret => {
+            this.setState({
+              starred: ret.data
+            })
+          })
+        }
+
       })
     }
+  }
+
+  handleShowRepos(){
+    this.setState({
+      showRepos: !this.state.showRepos,
+      showStarred: false
+    })
+  }
+
+  handleShowStarred(){
+    this.setState({
+      showRepos: false,
+      showStarred: !this.state.showStarred
+    })
   }
   
 
@@ -46,6 +76,10 @@ class App extends Component {
       repos={this.state.repos}
       starred={this.state.starred}
       handleSearch={(e) => this.handleSearch(e)}
+      handleShowRepos={() => this.handleShowRepos()}
+      handleShowStarred={() => this.handleShowStarred()}
+      showRepos={this.state.showRepos}
+      showStarred={this.state.showStarred}
     />;
   }
   

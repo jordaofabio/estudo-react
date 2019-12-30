@@ -9,7 +9,7 @@ const Repos = ({className, title, repos}) => (
       <ul className="repos-info">
         {repos.map((repo, index) => (
           <li key={index}>
-            <a href={repo.link}>
+            <a href={repo.html_url}>
               {repo.name}
               </a></li>
           ))}

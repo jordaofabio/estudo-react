@@ -7,21 +7,31 @@ import Repos from './repos';
 import Actions from './actions';
 import PropTypes from 'prop-types';
 
-const AppContent = ({ userInfo, repos, starred, handleSearch }) => (
+const AppContent = ({ userInfo,
+                      repos,
+                      starred,
+                      handleSearch,
+                      handleShowRepos,
+                      handleShowStarred,
+                      showRepos,
+                      showStarred
+                     }) => (
     <div className="App">
         <Search handleSearch={handleSearch} />
         
         {!!userInfo && <UserInfo userInfo={userInfo} />}
           
-        {!!userInfo && <Actions />}
+        {!!userInfo && <Actions handleShowRepos={handleShowRepos} 
+          handleShowStarred={handleShowStarred}
+        />}
   
-        {!!repos.length && <Repos 
+        {(!!repos.length && showRepos) && <Repos 
           className="repos-container"
           title="Repositórios"
           repos={repos}
         />}
   
-        {!!starred.length &&  <Repos 
+        {(!!starred.length && showStarred) &&  <Repos 
           className="starred"
           title="Favoritos"
           repos={starred}
