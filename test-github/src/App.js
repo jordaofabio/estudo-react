@@ -13,6 +13,7 @@ class App extends Component {
       showStarred: false,
       isFeching: false
     }
+    this.handleSearch = this.handleSearch.bind(this)
   }
 
   urlApiGitHub = `https://api.github.com/users/`;
@@ -84,7 +85,7 @@ class App extends Component {
       userInfo={this.state.userInfo}
       repos={this.state.repos}
       starred={this.state.starred}
-      handleSearch={(e) => this.handleSearch(e)}
+      handleSearch={this.handleSearch}
       handleRepos={this.showReposStarred('repos')}
       handleStarred={this.showReposStarred('starred')}
       showRepos={this.state.showRepos}
