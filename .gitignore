@@ -1,3 +1,4 @@
 test-github/yarn.lock
 */yarn.lock
 node_modules
+jest-in-practice/package-lock.json
