@@ -3,3 +3,5 @@ test-github/yarn.lock
 node_modules
 jest-in-practice/package-lock.json
 jest-in-practice/coverage
+jest-in-practice/coverage/coverage-final.json
+jest-in-practice/coverage/lcov.info
