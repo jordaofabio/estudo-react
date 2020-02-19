@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1582078441384" clover="3.2.0">
-  <project timestamp="1582078441384" name="All files">
-    <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0" elements="2" coveredelements="0" complexity="0" loc="1" ncloc="1" packages="1" files="1" classes="1"/>
-    <file name="sum.js" path="/home/fabio/Projetos/Estudo/estudo-react/jest-in-practice/sum.js">
-      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <line num="3" count="0" type="stmt"/>
+<coverage generated="1582083508038" clover="3.2.0">
+  <project timestamp="1582083508038" name="All files">
+    <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2" elements="7" coveredelements="7" complexity="0" loc="3" ncloc="3" packages="1" files="1" classes="1"/>
+    <file name="map.js" path="/home/fabio/Projetos/Estudo/estudo-react/jest-in-practice/map.js">
+      <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <line num="2" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="5" count="9" type="stmt"/>
     </file>
   </project>
 </coverage>
